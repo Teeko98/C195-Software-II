@@ -1,4 +1,5 @@
-package SQL;
+package sql;
+/*
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -21,7 +22,7 @@ public class JDBC {
 
           try {
               Class.forName(driver); // Locate Driver
-              //password = Details.getPassword(); // Assign password
+              password = Details.getPassword(); // Assign password
               connection = DriverManager.getConnection(jdbcUrl, userName, password); // reference Connection object
               System.out.println("Connection successful!");
           }
@@ -59,4 +60,4 @@ public class JDBC {
 
 
 
-}
+}*/
