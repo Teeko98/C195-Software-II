@@ -38,8 +38,13 @@ public class MainFormController implements Initializable {
      * Appointment Table Methods
      */
 
-    public void appointmentAddButtonPushed() {
+    public void appointmentAddButtonPushed(ActionEvent event) throws IOException {
+        Parent sceneParent = FXMLLoader.load(getClass().getResource("/view/AddAppointmentView.fxml"));
+        Scene newScene = new Scene(sceneParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
+        window.setScene(newScene);
+        window.show();
     }
 
     public void appointmentModifyButtonPushed() {

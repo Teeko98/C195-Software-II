@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFormController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFormController">
    <children>
       <GridPane layoutX="14.0" prefHeight="800.0" prefWidth="1200.0">
         <columnConstraints>
@@ -62,7 +62,7 @@
                         </TableView>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
-                              <Button fx:id="appointmentAddButtonPushed" alignment="CENTER" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Add" />
+                              <Button alignment="CENTER" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#appointmentAddButtonPushed" prefHeight="40.0" prefWidth="100.0" text="Add" />
                               <Button fx:id="appointmentModifyButtonPushed" alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Modify" />
                               <Button fx:id="appointmentDeleteButtonPushed" alignment="CENTER" layoutX="62.0" layoutY="10.0" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Delete" />
                            </children>
