@@ -27,16 +27,16 @@
           <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" prefHeight="50.0" prefWidth="500.0" text="User Login" textAlignment="CENTER" GridPane.columnIndex="1">
+            <Label fx:id="userLoginLabel" alignment="CENTER" prefHeight="50.0" prefWidth="500.0" text="User Login" textAlignment="CENTER" GridPane.columnIndex="1">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="50.0">
                      <children>
-                        <Label prefWidth="100.0" text="Username:">
+                        <Label fx:id="usernameLabel" alignment="CENTER_RIGHT" prefWidth="200.0" text="Username:">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -52,7 +52,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="50.0">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="100.0" text="Password:">
+                        <Label fx:id="passwordLabel" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="200.0" text="Password:">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -68,12 +68,12 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="20.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#loginButtonPushed" text="Login">
+                        <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonPushed" text="Login">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#closeButtonPushed" text="Close">
+                        <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonPushed" text="Close">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -82,6 +82,16 @@
                      <VBox.margin>
                         <Insets top="30.0" />
                      </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="500.0">
+                     <children>
+                        <Label fx:id="systemLanguageLabel" text="System Language:">
+                           <padding>
+                              <Insets right="30.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="resourceBundleLabel" text="EN" />
+                     </children>
                   </HBox>
                </children>
                <GridPane.margin>

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFormController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFormController">
    <children>
       <GridPane layoutX="14.0" prefHeight="800.0" prefWidth="1200.0">
         <columnConstraints>
@@ -52,19 +52,23 @@
                      <children>
                         <TableView fx:id="appointmentTableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                           <columns>
-                            <TableColumn fx:id="appointmentIdTableColumn" prefWidth="150.0" text="Appointment ID" />
-                              <TableColumn fx:id="appointmentUserIdTableColumn" prefWidth="75.0" text="User ID" />
-                              <TableColumn fx:id="appointmentCustomerIdTableColumn" prefWidth="75.0" text="Customer ID" />
-                            <TableColumn fx:id="appointmentTitleTableColumn" minWidth="0.0" prefWidth="150.0" text="Title" />
-                              <TableColumn fx:id="appointmentStartTableColumn" minWidth="0.0" prefWidth="134.0" text="Start" />
-                              <TableColumn fx:id="appointmentEndTableColumn" prefWidth="411.0" text="End" />
+                            <TableColumn fx:id="appointmentIdTableColumn" prefWidth="40.0" text="ID" />
+                            <TableColumn fx:id="appointmentTitleTableColumn" minWidth="0.0" prefWidth="76.0" text="Title" />
+                              <TableColumn fx:id="appointmentDescriptionTableColumn" prefWidth="149.0" text="Description" />
+                              <TableColumn fx:id="appointmentLocationTableColumn" prefWidth="75.0" text="Location" />
+                              <TableColumn fx:id="appointmentContactTableColumn" prefWidth="75.0" text="Contact" />
+                              <TableColumn fx:id="appointmentTypeTableColumn" prefWidth="75.0" text="Type" />
+                              <TableColumn fx:id="appointmentStartTableColumn" minWidth="0.0" text="Start Date" />
+                              <TableColumn fx:id="appointmentEndTableColumn" text="End Date" />
+                              <TableColumn fx:id="appointmentCustomerIdTableColumn" prefWidth="90.0" text="Customer ID" />
+                              <TableColumn fx:id="appointmentUserIdTableColumn" prefWidth="98.0" text="User ID" />
                           </columns>
                         </TableView>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
                               <Button alignment="CENTER" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#appointmentAddButtonPushed" prefHeight="40.0" prefWidth="100.0" text="Add" />
-                              <Button fx:id="appointmentModifyButtonPushed" alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Modify" />
-                              <Button fx:id="appointmentDeleteButtonPushed" alignment="CENTER" layoutX="62.0" layoutY="10.0" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Delete" />
+                              <Button alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#appointmentModifyButtonPushed" prefHeight="40.0" prefWidth="100.0" text="Modify" />
+                              <Button alignment="CENTER" layoutX="62.0" layoutY="10.0" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#appointmentDeleteButtonPushed" prefHeight="40.0" prefWidth="100.0" text="Delete" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -94,9 +98,9 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <Button fx:id="customerAddButtonPushed" alignment="CENTER" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Add" />
-                                    <Button fx:id="customerModifyButtonPushed" alignment="CENTER" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Modify" />
-                                    <Button fx:id="customerDeleteButtonPushed" alignment="CENTER" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Delete" />
+                                    <Button alignment="CENTER" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#customerAddButtonPushed" prefHeight="40.0" prefWidth="100.0" text="Add" />
+                                    <Button alignment="CENTER" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#customerModifyButtonPushed" prefHeight="40.0" prefWidth="100.0" text="Modify" />
+                                    <Button alignment="CENTER" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#customerDeleteButtonPushed" prefHeight="40.0" prefWidth="100.0" text="Delete" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -110,10 +114,11 @@
                               </HBox>
                               <TableView fx:id="customerTableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                 <columns>
-                                  <TableColumn fx:id="customerIdTableColumn" prefWidth="140.0" text="Customer ID" />
-                                  <TableColumn fx:id="customerNameTableColumn" prefWidth="137.0" text="Customer Name" />
-                                    <TableColumn fx:id="customerAddressIdTableColumn" prefWidth="79.0" text="Address ID" />
-                                    <TableColumn fx:id="customerActiveTableColumn" prefWidth="243.0" text="Active" />
+                                  <TableColumn fx:id="customerIdTableColumn" prefWidth="40.0" text="ID" />
+                                  <TableColumn fx:id="customerNameTableColumn" prefWidth="150.0" text="Name" />
+                                    <TableColumn fx:id="customerAddressTableColumn" prefWidth="200.0" text="Address" />
+                                    <TableColumn fx:id="customerPostalTableColumn" prefWidth="60.0" text="Postal" />
+                                    <TableColumn fx:id="customerPhoneTableColumn" prefWidth="150.0" text="Phone" />
                                 </columns>
                               </TableView>
                            </children>

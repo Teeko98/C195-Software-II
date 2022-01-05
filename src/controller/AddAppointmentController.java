@@ -6,8 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class AddAppointmentController implements Initializable {
 
-    public TextField appointmentIdTextField;
+    public Label appointmentIdLabel;
     public TextField userIdTextField;
     public TextField customerIdTextField;
     public TextField titleTextField;
@@ -24,16 +23,13 @@ public class AddAppointmentController implements Initializable {
     public TextField locationTextField;
     public TextField contactTextField;
     public TextField typeTextField;
-    public TextField urlTextField;
-    public ChoiceBox dateMonthChoiceBox;
-    public ChoiceBox dateDayChoiceBox;
-    public ChoiceBox dateYearChoiceBox;
-    public ChoiceBox startTimeHourChoiceBox;
-    public ChoiceBox startTimeMinuteChoiceBox;
-    public ChoiceBox startTimePeriodChoiceBox;
-    public ChoiceBox endTimeHourChoiceBox;
-    public ChoiceBox endTimeMinuteChoiceBox;
-    public ChoiceBox endTimePeriodChoiceBox;
+    public DatePicker datePicker;
+    public ComboBox startTimeHourComboBox;
+    public ComboBox startTimeMinuteComboBox;
+    public ComboBox startTimePeriodComboBox;
+    public ComboBox endTimeHourComboBox;
+    public ComboBox endTimeMinuteComboBox;
+    public ComboBox endTimePeriodComboBox;
 
     public void returnToMainFormView(ActionEvent event) throws IOException {
         Parent sceneParent = FXMLLoader.load(getClass().getResource("/view/MainFormView.fxml"));
@@ -62,30 +58,14 @@ public class AddAppointmentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Initialize Choice Boxes
-        dateMonthChoiceBox.getItems().addAll("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec");
-        dateMonthChoiceBox.setValue("Jan");
-        for (int i = 1; i < 32; i++) {
-            dateDayChoiceBox.getItems().add(i);
-        }
-        dateDayChoiceBox.setValue(1);
-        for (int i = 2021; i < 2033; i++) {
-            dateYearChoiceBox.getItems().add(i);
-        }
-        dateYearChoiceBox.setValue(2021);
         for (int i = 1; i < 13; i++) {
-            startTimeHourChoiceBox.getItems().add(i);
-            endTimeHourChoiceBox.getItems().add(i);
+            startTimeHourComboBox.getItems().add(i);
+            endTimeHourComboBox.getItems().add(i);
         }
-        startTimeHourChoiceBox.setValue(12);
-        startTimeMinuteChoiceBox.getItems().addAll("00", 15, 30, 45);
-        startTimeMinuteChoiceBox.setValue("00");
-        startTimePeriodChoiceBox.getItems().addAll("AM", "PM");
-        startTimePeriodChoiceBox.setValue("PM");
-        endTimeHourChoiceBox.setValue(1);
-        endTimeMinuteChoiceBox.getItems().addAll("00", 15, 30, 45);
-        endTimeMinuteChoiceBox.setValue("00");
-        endTimePeriodChoiceBox.getItems().addAll("AM", "PM");
-        endTimePeriodChoiceBox.setValue("PM");
+        startTimeMinuteComboBox.getItems().addAll("00", "15", "30", "45");
+        startTimePeriodComboBox.getItems().addAll("AM", "PM");
+        endTimeMinuteComboBox.getItems().addAll("00", "15", "30", "45");
+        endTimePeriodComboBox.getItems().addAll("AM", "PM");
 
     }
 }
