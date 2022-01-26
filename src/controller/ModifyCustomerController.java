@@ -22,11 +22,11 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ResourceBundle;
 
-
-//TODO
-// implement Last_Update date
 
 public class ModifyCustomerController implements Initializable {
 
@@ -35,6 +35,7 @@ public class ModifyCustomerController implements Initializable {
     String customerAddress;
     String customerPostalCode;
     String customerPhoneNumber;
+    String currentDateTime;
 
     ObservableList<FirstLevelDivision> allFirstLevelDivisions = DBFirstLevelDivisions.getAllFirstLevelDivisions();
     ObservableList<Country> allCountries = DBCountries.getAllCountries();
@@ -77,6 +78,9 @@ public class ModifyCustomerController implements Initializable {
     public ModifyCustomerController() throws SQLException {
     }
 
+    /**
+     * Returns to the main view form.
+     */
     public void returnToMainFormView(ActionEvent event) throws IOException {
         Parent sceneParent = FXMLLoader.load(getClass().getResource("/view/MainFormView.fxml"));
         Scene newScene = new Scene(sceneParent);
@@ -86,6 +90,10 @@ public class ModifyCustomerController implements Initializable {
         window.show();
     }
 
+    /**
+     * If user input data is valid, it is read into local variables and then inserted into the database using an SQL INSERT statement.
+     * Returns to main menu upon successful insert.
+     */
     public void saveButtonPushed(ActionEvent event) throws IOException, SQLException {
         if (isInputDataValid()) {
             readInputData();
@@ -100,19 +108,27 @@ public class ModifyCustomerController implements Initializable {
                     "Address = '" + customerAddress + "', " +
                     "Postal_Code = '" + customerPostalCode + "', " +
                     "Phone = '" + customerPhoneNumber + "', " +
+                    "Last_Update = '" + currentDateTime + "', " +
                     "Last_Updated_By = '" + DBUsers.currentUser.getUsername() +"', " +
                     "Division_ID = '" + customerFirstLevelDivisionId + "' " +
                     "WHERE Customer_ID = " + customerId + ";";
-            System.out.println(updateStatement);
-            //statement.execute(updateStatement);
+            //System.out.println(updateStatement);
+            statement.execute(updateStatement);
             returnToMainFormView(event);
         }
     }
 
+    /**
+     * Returns to the main view.
+     */
     public void cancelButtonPushed(ActionEvent event) throws IOException {
         returnToMainFormView(event);
     }
 
+    /**
+     * Tests if input data is valid.
+     * @return true if data is valid, false if there was an error.
+     */
     public boolean isInputDataValid() {
         if (customerNameTextField.getText().equals("")
                 || customerNameTextField.getText().equals("")
@@ -125,6 +141,9 @@ public class ModifyCustomerController implements Initializable {
         return true;
     }
 
+    /**
+     * Reads the input data into local variables.
+     */
     public void readInputData() throws SQLException {
         customerName = customerNameTextField.getText();
         customerAddress = addressTextField.getText();
@@ -134,8 +153,16 @@ public class ModifyCustomerController implements Initializable {
 
         customerPostalCode = postalCodeTextField.getText();
         customerPhoneNumber = phoneNumberTextField.getText();
+
+        LocalDateTime currentLocalDateTime = LocalDateTime.now();
+        ZonedDateTime currentLocalZonedDateTime = ZonedDateTime.of(currentLocalDateTime, ZoneId.systemDefault());
+        ZonedDateTime utcLocalZonedDateTime = ZonedDateTime.ofInstant(currentLocalZonedDateTime.toInstant(), ZoneId.of("UTC"));
+        currentDateTime = (utcLocalZonedDateTime.toLocalDate().toString() + " " + utcLocalZonedDateTime.toLocalTime().toString());
     }
 
+    /**
+     * Updates the state combo box with the appropriate values based on what is selected in the country combo box.
+     */
     public void updateStateChoiceBox() {
         FilteredList<Country> selectedCountry = new FilteredList<Country>(allCountries, i-> i.getCountryName() == countryComboBox.getValue());
         customerCountryId = selectedCountry.get(0).getCountryId();
@@ -152,9 +179,11 @@ public class ModifyCustomerController implements Initializable {
         }
     }
 
+    /**
+     * Initializes the country combo box
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         // Initialize Combo Boxes
         for (int i = 0; i < allCountries.size(); i++) {
             countryComboBox.getItems().add(allCountries.get(i).getCountryName());

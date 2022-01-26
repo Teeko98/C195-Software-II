@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ContactScheduleReportController">
+   <children>
+      <GridPane alignment="CENTER" prefHeight="600.0" prefWidth="800.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="0.0" prefWidth="50.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="700.0" minWidth="10.0" prefWidth="700.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" prefWidth="50.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="450.0" minHeight="10.0" prefHeight="450.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+               <children>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="500.0" text="Contact Schedule Report" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="500.0">
+                     <children>
+                        <TableView fx:id="appointmentTableView" prefHeight="372.0" prefWidth="700.0">
+                          <columns>
+                            <TableColumn fx:id="appointmentIdTableColumn" editable="false" prefWidth="50.0" text="ID" />
+                            <TableColumn fx:id="appointmentTitleTableColumn" editable="false" prefWidth="120.0" text="Title" />
+                              <TableColumn fx:id="appointmentDescriptionTableColumn" editable="false" prefWidth="140.0" text="Description" />
+                              <TableColumn fx:id="appointmentTypeTableColumn" editable="false" prefWidth="100.0" text="Type" />
+                              <TableColumn fx:id="appointmentDateTableColumn" editable="false" prefWidth="75.0" text="Date" />
+                              <TableColumn fx:id="appointmentStartTimeTableColumn" editable="false" prefWidth="75.0" text="Start Time" />
+                              <TableColumn fx:id="appointmentEndTimeTableColumn" editable="false" prefWidth="75.0" text="End Time" />
+                              <TableColumn fx:id="appointmentCustomerIdTableColumn" editable="false" prefWidth="65.0" text="Cust ID" />
+                          </columns>
+                           <HBox.margin>
+                              <Insets bottom="10.0" top="20.0" />
+                           </HBox.margin>
+                        </TableView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="500.0" spacing="50.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" text="Select Contact:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="contactComboBox" prefHeight="35.0" prefWidth="150.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" minHeight="50.0" prefHeight="50.0" prefWidth="200.0" spacing="20.0">
+                     <children>
+                        <Button fx:id="generateButton" mnemonicParsing="false" onAction="#generateButtonPushed" text="Generate">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="returnButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#returnButtonPushed" text="Return">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </VBox>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

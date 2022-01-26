@@ -11,14 +11,19 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import sql.DBUsers;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LoginSceneController implements Initializable {
-
     public Label userLoginLabel;
     public Label usernameLabel;
     public Label passwordLabel;
@@ -45,20 +50,26 @@ public class LoginSceneController implements Initializable {
         if(DBUsers.userLogin(username, password)) {
             validLogin(event);
         } else {
-            invalidLogin();
+            invalidLogin(username);
         }
     }
 
     /**
      * Launches the main view of the application when a user has logged on successfully.
      */
-    public void validLogin(Event event) throws IOException {
-        System.out.println("User \"" + username + "\" has successfully logged in.");
+    public void validLogin(Event event) throws IOException, SQLException {
+        appendLoginActivityFile(username, true);
 
-        Parent sceneParent = FXMLLoader.load(getClass().getResource("/view/MainFormView.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/view/MainFormView.fxml"));
+        Parent sceneParent = loader.load();
+
+        MainFormController controller = loader.getController();
+
+        controller.checkUpcomingAppointments();
+
         Scene newScene = new Scene(sceneParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
         window.setScene(newScene);
         window.show();
     }
@@ -66,7 +77,8 @@ public class LoginSceneController implements Initializable {
     /**
      * Displays an alert box when a user has entered invalid login credentials.
      */
-    public void invalidLogin() {
+    public void invalidLogin(String username) throws IOException {
+        appendLoginActivityFile(username, false);
         System.out.println("Error: Invalid login credentials!");
 
         Alert invalidLoginAlert = new Alert(Alert.AlertType.ERROR);
@@ -89,6 +101,21 @@ public class LoginSceneController implements Initializable {
      */
     public void closeButtonPushed() {
         System.exit(0);
+    }
+
+    /**
+     * Appends the login_activity.txt file with all valid and invalid login attempts.
+     * @param username the username that was entered.
+     * @param valid true if the login was valid, false otherwise.
+     */
+    public void appendLoginActivityFile(String username, boolean valid) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter("src/login_activity.txt", true));
+        if (valid) {
+            bw.write("User " + username + " successfully logged in at " + LocalDate.now(ZoneId.of("UTC")) + " " + LocalTime.now(ZoneId.of("UTC")) + " UTC\n");
+        } else {
+            bw.write("User " + username + " unsuccessful login attempt at " + LocalDate.now(ZoneId.of("UTC")) + " " + LocalTime.now(ZoneId.of("UTC")) + " UTC\n");
+        }
+        bw.close();
     }
 
     /**

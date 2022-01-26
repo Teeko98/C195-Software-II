@@ -12,18 +12,15 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- *
- *
  * @author Alberto Sosa
  */
-
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        // Test French Language
-        //Locale.setDefault(new Locale("fr"));
+        // Test French locale
+        // Locale.setDefault(new Locale("fr"));
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Nat", Locale.getDefault());
 
@@ -34,12 +31,8 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
     public static void main(String[] args) throws SQLException {
         JDBC.openConnection();
-
-
-
         launch(args);
         JDBC.closeConnection();
     }

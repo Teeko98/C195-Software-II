@@ -6,6 +6,9 @@ import main.Appointment;
 import main.Customer;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class DBAppointments {
     public static ObservableList<Appointment> getAllAppointments() throws SQLException {
@@ -26,17 +29,17 @@ public class DBAppointments {
             String description = resultSet.getString("Description");
             String location = resultSet.getString("Location");
             String type = resultSet.getString("Type");
-            Date startDate = resultSet.getDate("Start");
-            Date endDate = resultSet.getDate("End");
-            Date createDate = resultSet.getDate("Create_Date");
+            LocalDateTime startLocalDateTime = resultSet.getTimestamp("Start").toLocalDateTime();
+            LocalDateTime endLocalDateTime = resultSet.getTimestamp("End").toLocalDateTime();
+            LocalDateTime createLocalDateTime = resultSet.getTimestamp("Create_Date").toLocalDateTime();
             String createdBy = resultSet.getString("Created_By");
-            Date lastUpdate = resultSet.getDate("Last_Update");
+            LocalDateTime lastUpdateLocalDateTime = resultSet.getTimestamp("Last_Update").toLocalDateTime();
             String lastUpdatedBy = resultSet.getString("Last_Updated_By");
             int customerId = resultSet.getInt("Customer_ID");
             int userId = resultSet.getInt("User_ID");
             int contactId = resultSet.getInt("Contact_ID");
 
-            Appointment appointment = new Appointment(appointmentId, title, description, location, type, startDate, endDate, createDate, createdBy, lastUpdate, lastUpdatedBy, customerId, userId, contactId);
+            Appointment appointment = new Appointment(appointmentId, title, description, location, type, startLocalDateTime, endLocalDateTime, createLocalDateTime, createdBy, lastUpdateLocalDateTime, lastUpdatedBy, customerId, userId, contactId);
             appointmentsList.add(appointment);
         }
         return appointmentsList;

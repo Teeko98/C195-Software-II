@@ -1,5 +1,7 @@
 package sql;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import main.User;
 
 import java.sql.*;
@@ -45,5 +47,32 @@ public class DBUsers {
      */
     public static void userLogout(){
         currentUser = null;
+    }
+
+    public static ObservableList<User> getAllUsers() throws SQLException {
+
+        ObservableList<User> usersList = FXCollections.observableArrayList();
+
+        Connection connection = JDBC.getConnection();
+        DBQuery.setStatement(connection);
+        Statement statement = DBQuery.getStatement();
+
+        String selectStatement = "SELECT * FROM client_schedule.users;";
+        statement.execute(selectStatement);
+        ResultSet resultSet = statement.getResultSet();
+
+        while(resultSet.next()) {
+            int userId = resultSet.getInt("User_ID");
+            String username = resultSet.getString("User_Name");
+            String password = resultSet.getString("Password");
+            Date createDate = resultSet.getDate("Create_Date");
+            String createdBy = resultSet.getString("Created_By");
+            Date lastUpdate = resultSet.getDate("Last_Update");
+            String lastUpdatedBy = resultSet.getString("Last_Updated_by");
+
+            User user = new User(userId, username, password, createDate, createdBy, lastUpdate, lastUpdatedBy);
+            usersList.add(user);
+        }
+        return usersList;
     }
 }

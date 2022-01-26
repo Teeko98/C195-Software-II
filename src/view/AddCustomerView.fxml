@@ -48,9 +48,9 @@
                                         <Font size="18.0" />
                                     </font>
                                 </Label>
-                        <Label fx:id="customerIdLabel" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" text="0">
+                        <Label maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" text="Auto-Generated" textFill="DIMGRAY">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Italic" size="18.0" />
                            </font>
                         </Label>
                             </children>

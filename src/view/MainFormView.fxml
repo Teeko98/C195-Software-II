@@ -2,8 +2,10 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFormController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFormController">
    <children>
       <GridPane layoutX="14.0" prefHeight="800.0" prefWidth="1200.0">
         <columnConstraints>
@@ -52,16 +54,17 @@
                      <children>
                         <TableView fx:id="appointmentTableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                           <columns>
-                            <TableColumn fx:id="appointmentIdTableColumn" prefWidth="40.0" text="ID" />
-                            <TableColumn fx:id="appointmentTitleTableColumn" minWidth="0.0" prefWidth="76.0" text="Title" />
-                              <TableColumn fx:id="appointmentDescriptionTableColumn" prefWidth="149.0" text="Description" />
-                              <TableColumn fx:id="appointmentLocationTableColumn" prefWidth="75.0" text="Location" />
-                              <TableColumn fx:id="appointmentContactTableColumn" prefWidth="75.0" text="Contact" />
-                              <TableColumn fx:id="appointmentTypeTableColumn" prefWidth="75.0" text="Type" />
-                              <TableColumn fx:id="appointmentStartTableColumn" minWidth="0.0" text="Start Date" />
-                              <TableColumn fx:id="appointmentEndTableColumn" text="End Date" />
-                              <TableColumn fx:id="appointmentCustomerIdTableColumn" prefWidth="90.0" text="Customer ID" />
-                              <TableColumn fx:id="appointmentUserIdTableColumn" prefWidth="98.0" text="User ID" />
+                            <TableColumn fx:id="appointmentIdTableColumn" editable="false" prefWidth="50.0" resizable="false" text="ID" />
+                            <TableColumn fx:id="appointmentTitleTableColumn" editable="false" minWidth="0.0" prefWidth="130.0" resizable="false" text="Title" />
+                              <TableColumn fx:id="appointmentDescriptionTableColumn" editable="false" prefWidth="200.0" resizable="false" text="Description" />
+                              <TableColumn fx:id="appointmentLocationTableColumn" editable="false" prefWidth="100.0" resizable="false" text="Location" />
+                              <TableColumn fx:id="appointmentContactTableColumn" editable="false" resizable="false" text="Contact Id" />
+                              <TableColumn fx:id="appointmentTypeTableColumn" editable="false" prefWidth="150.0" resizable="false" text="Type" />
+                              <TableColumn fx:id="appointmentDateTableColumn" editable="false" minWidth="0.0" prefWidth="75.0" resizable="false" text="Date" />
+                              <TableColumn fx:id="appointmentStartTimeTableColumn" editable="false" prefWidth="75.0" resizable="false" text="Start Time" />
+                              <TableColumn fx:id="appointmentEndTimeTableColumn" editable="false" prefWidth="75.0" resizable="false" text="End Time" />
+                              <TableColumn fx:id="appointmentCustomerIdTableColumn" editable="false" prefWidth="65.0" resizable="false" text="Cust ID" />
+                              <TableColumn fx:id="appointmentUserIdTableColumn" editable="false" prefWidth="60.0" resizable="false" text="User ID" />
                           </columns>
                         </TableView>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -71,15 +74,33 @@
                               <Button alignment="CENTER" layoutX="62.0" layoutY="10.0" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#appointmentDeleteButtonPushed" prefHeight="40.0" prefWidth="100.0" text="Delete" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                        <GridPane prefHeight="50.0" prefWidth="824.0" GridPane.columnIndex="1">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
                            <children>
-                              <Label text="Appointments" textAlignment="CENTER">
+                              <Label text="Appointments" textAlignment="CENTER" GridPane.columnIndex="1">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="2">
+                                 <children>
+                                    <RadioButton fx:id="viewAllRadioButton" mnemonicParsing="false" onAction="#updateAppointmentTableView" selected="true" text="View All">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="appointmentsViewToggleGroup" />
+                                       </toggleGroup></RadioButton>
+                                    <RadioButton fx:id="viewMonthRadioButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#updateAppointmentTableView" text="View Month" toggleGroup="$appointmentsViewToggleGroup" />
+                                    <RadioButton fx:id="viewWeekRadioButton" layoutX="97.0" layoutY="10.0" mnemonicParsing="false" onAction="#updateAppointmentTableView" text="View Week" toggleGroup="$appointmentsViewToggleGroup" />
+                                 </children>
+                              </HBox>
                            </children>
-                        </HBox>
+                        </GridPane>
                      </children>
                   </GridPane>
                   <HBox prefHeight="300.0" prefWidth="1160.0">
@@ -114,11 +135,11 @@
                               </HBox>
                               <TableView fx:id="customerTableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                 <columns>
-                                  <TableColumn fx:id="customerIdTableColumn" prefWidth="40.0" text="ID" />
-                                  <TableColumn fx:id="customerNameTableColumn" prefWidth="150.0" text="Name" />
-                                    <TableColumn fx:id="customerAddressTableColumn" prefWidth="200.0" text="Address" />
-                                    <TableColumn fx:id="customerPostalTableColumn" prefWidth="60.0" text="Postal" />
-                                    <TableColumn fx:id="customerPhoneTableColumn" prefWidth="150.0" text="Phone" />
+                                  <TableColumn fx:id="customerIdTableColumn" editable="false" prefWidth="40.0" resizable="false" text="ID" />
+                                  <TableColumn fx:id="customerNameTableColumn" editable="false" prefWidth="150.0" resizable="false" text="Name" />
+                                    <TableColumn fx:id="customerAddressTableColumn" editable="false" prefWidth="200.0" resizable="false" text="Address" />
+                                    <TableColumn fx:id="customerPostalTableColumn" editable="false" prefWidth="60.0" resizable="false" text="Postal" />
+                                    <TableColumn fx:id="customerPhoneTableColumn" editable="false" prefWidth="150.0" resizable="false" text="Phone" />
                                 </columns>
                               </TableView>
                            </children>
@@ -145,9 +166,8 @@
                               </HBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
-                                    <Button alignment="CENTER" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" mnemonicParsing="false" onAction="#viewAppointmentsButtonPushed" prefHeight="40.0" prefWidth="200.0" text="View Appointments" />
                                     <Button alignment="CENTER" layoutX="90.0" layoutY="115.0" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" mnemonicParsing="false" onAction="#appointmentsTypeReportButtonPushed" prefHeight="40.0" prefWidth="200.0" text="Appointment Types Report" />
-                                    <Button alignment="CENTER" layoutX="90.0" layoutY="135.0" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" mnemonicParsing="false" onAction="#consultantScheduleReportButtonPushed" prefHeight="40.0" prefWidth="200.0" text="Consultant Schedule Report" />
+                                    <Button alignment="CENTER" layoutX="90.0" layoutY="135.0" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" mnemonicParsing="false" onAction="#contactScheduleReportButtonPushed" prefHeight="40.0" prefWidth="200.0" text="Contact Schedule Report" />
                                     <Button alignment="CENTER" layoutX="90.0" layoutY="115.0" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" mnemonicParsing="false" onAction="#appointmentCustomerReportButtonPushed" prefHeight="40.0" prefWidth="200.0" text="Appointment Customer Report" />
                                     <Button alignment="CENTER" layoutX="90.0" layoutY="155.0" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" mnemonicParsing="false" onAction="#logOutButtonPushed" prefHeight="40.0" prefWidth="200.0" text="Log Out" />
                                  </children>

@@ -6,7 +6,7 @@ import main.Customer;
 
 import java.sql.*;
 
-public class DBCustomer {
+public class DBCustomers {
 
     /**
      * @return an observable list of the Customer class of all customers in the sql server.

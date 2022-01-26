@@ -1,6 +1,7 @@
 package main;
 
 import java.sql.Date;
+import java.time.*;
 
 public class Appointment {
     private int appointmentId;
@@ -8,17 +9,17 @@ public class Appointment {
     private String description;
     private String location;
     private String type;
-    private Date startDate;
-    private Date endDate;
-    private Date createDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+    private LocalDateTime createDate;
     private String createdBy;
-    private Date lastUpdate;
+    private LocalDateTime lastUpdate;
     private String lastUpdatedBy;
     private int customerId;
     private int userId;
     private int contactId;
 
-    public Appointment(int appointmentId, String title, String description, String location, String type, Date startDate, Date endDate, Date createDate, String createdBy, Date lastUpdate, String lastUpdatedBy, int customerId, int userId, int contactId) {
+    public Appointment(int appointmentId, String title, String description, String location, String type, LocalDateTime startDate, LocalDateTime endDate, LocalDateTime createDate, String createdBy, LocalDateTime lastUpdate, String lastUpdatedBy, int customerId, int userId, int contactId) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
@@ -75,27 +76,27 @@ public class Appointment {
         this.type = type;
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
-    public Date getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 
@@ -107,11 +108,11 @@ public class Appointment {
         this.createdBy = createdBy;
     }
 
-    public Date getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 
@@ -145,5 +146,23 @@ public class Appointment {
 
     public void setContactId(int contactId) {
         this.contactId = contactId;
+    }
+
+    public LocalDate getDate() {
+        ZonedDateTime utcZonedDateTime = ZonedDateTime.of(startDate, ZoneId.of("UTC"));
+        ZonedDateTime localZonedDateTime = ZonedDateTime.ofInstant(utcZonedDateTime.toInstant(), ZoneId.systemDefault());
+
+        return localZonedDateTime.toLocalDate();
+    }
+
+    public LocalTime getStartTime() {
+        ZonedDateTime utcZonedDateTime = ZonedDateTime.of(startDate, ZoneId.of("UTC"));
+
+        return ZonedDateTime.ofInstant(utcZonedDateTime.toInstant(), ZoneId.systemDefault()).toLocalTime();
+    }
+
+    public LocalTime getEndTime() {
+        ZonedDateTime utcZonedDateTime = ZonedDateTime.of(endDate, ZoneId.of("UTC"));
+        return ZonedDateTime.ofInstant(utcZonedDateTime.toInstant(), ZoneId.systemDefault()).toLocalTime();
     }
 }

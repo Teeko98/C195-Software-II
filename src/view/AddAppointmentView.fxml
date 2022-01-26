@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddAppointmentController">
+<AnchorPane prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddAppointmentController">
    <children>
       <GridPane prefHeight="800.0" prefWidth="600.0">
         <columnConstraints>
@@ -61,9 +61,9 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="appointmentIdLabel" alignment="CENTER" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefWidth="200.0" text="0">
+                        <Label fx:id="appointmentIdLabel" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefWidth="200.0" text="Auto-Generated" textFill="DIMGRAY">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Italic" size="18.0" />
                            </font>
                         </Label>
                      </children>
@@ -105,7 +105,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="contactTextField" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefWidth="200.0" />
+                        <ComboBox fx:id="contactComboBox" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
@@ -154,22 +154,22 @@
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="285.0" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="User ID">
+                        <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="User">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="userIdTextField" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefWidth="200.0" />
+                        <ComboBox fx:id="userComboBox" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="310.0" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Customer ID">
+                        <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Customer">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="customerIdTextField" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefWidth="200.0" />
+                        <ComboBox fx:id="customerComboBox" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" maxHeight="80.0" minHeight="80.0" prefHeight="80.0" prefWidth="200.0" spacing="20.0">
