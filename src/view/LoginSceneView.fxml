@@ -93,6 +93,16 @@
                         <Label fx:id="resourceBundleLabel" text="EN" />
                      </children>
                   </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="190.0" prefHeight="30.0" prefWidth="500.0">
+                     <children>
+                        <Label text="User Zone ID:">
+                           <padding>
+                              <Insets right="30.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="userZoneIdLabel" />
+                     </children>
+                  </HBox>
                </children>
                <GridPane.margin>
                   <Insets top="30.0" />

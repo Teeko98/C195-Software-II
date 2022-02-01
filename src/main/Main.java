@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import sql.JDBC;
 
 import java.sql.SQLException;
+import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -21,6 +22,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         // Test French locale
         // Locale.setDefault(new Locale("fr"));
+
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Nat", Locale.getDefault());
 

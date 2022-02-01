@@ -43,6 +43,7 @@ public class ContactScheduleReportController implements Initializable {
 
     /**
      * Generates a tableview of all appointments filtered by the selected contact ID
+     * Lambda expression used here to help simplify code.
      */
     public void generateButtonPushed() {
         Contact selectedContact = new FilteredList<>(allContacts, i-> i.getContactName() == contactComboBox.getValue().toString()).get(0);

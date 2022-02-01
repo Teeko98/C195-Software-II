@@ -29,6 +29,7 @@ public class LoginSceneController implements Initializable {
     public Label passwordLabel;
     public Label systemLanguageLabel;
     public Label resourceBundleLabel;
+    public Label userZoneIdLabel;
     public Button loginButton;
     public Button closeButton;
     public TextField usernameTextField;
@@ -135,6 +136,7 @@ public class LoginSceneController implements Initializable {
             resourceBundleLabel.setText(resourceBundle.getString("LanguageCode"));
             this.resourceBundle = resourceBundle;
         }
+        userZoneIdLabel.setText(ZoneId.of(ZoneId.systemDefault().getId()).toString());
 
     }
 }

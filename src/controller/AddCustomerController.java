@@ -149,6 +149,7 @@ public class AddCustomerController implements Initializable {
 
     /**
      * Initializes the country combo box
+     * Lambda expression used here to help simplify code.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
